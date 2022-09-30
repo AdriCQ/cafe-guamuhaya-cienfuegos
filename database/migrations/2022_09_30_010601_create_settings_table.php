@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('site_title');
-            $table->longText('site_about');
+            $table->json('site_about');
             $table->string('address');
             $table->json('social')->nullable();
         });

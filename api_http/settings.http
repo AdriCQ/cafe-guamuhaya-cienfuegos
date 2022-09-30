@@ -9,19 +9,19 @@ Authorization: {{ token }}
 
 {
     "site_title": "Offer Title Updated",
-    "site_about": "Site about update",
+    "site_about": ["Site about update"],
     "address": "Updated Address",
     "social": [
         {
             "key": "tel",
             "label": "Telefono",
-            "icon": "mdi-phone",
+            "icon": "ion-phone",
             "link":"tel:53375180"
         },
         {
             "key": "email",
             "label": "Email",
-            "icon": "mdi-mail",
+            "icon": "icon-email",
             "link":"mailto:acq95@nauta.cu"
         }
     ]

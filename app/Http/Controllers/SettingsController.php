@@ -39,7 +39,8 @@ class SettingsController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'site_title' => ['nullable', 'string'],
-            'site_about' => ['nullable', 'string'],
+            'site_about' => ['nullable', 'array'],
+            'site_about.*' => ['required', 'string'],
             'address' => ['nullable', 'string'],
             'social' => ['nullable', 'array'],
             'social.*.key' => ['required', 'string'],

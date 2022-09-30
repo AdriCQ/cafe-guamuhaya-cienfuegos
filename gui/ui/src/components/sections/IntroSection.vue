@@ -2,9 +2,9 @@
     <section class="bg-1 h-900x main-slider pos-relative">
         <div class="triangle-up pos-bottom"></div>
         <div class="container h-100">
-            <div class="dplay-tbl">
+            <div class="dplay-tbl" v-if="settings">
                 <div class="dplay-tbl-cell center-text color-white">
-                    <h1 class="mt-30 mb-15">Jagua - Bit</h1>
+                    <h1 class="mt-30 mb-15">{{ settings.site_title }}</h1>
                     <h5>
                         <router-link
                             :to="{ name: ROUTE_NAME.MENU }"
@@ -23,4 +23,10 @@
 
 <script lang="ts" setup>
 import { ROUTE_NAME } from "src/router";
+import { injectStrict, _appInjectable } from "src/injectables";
+import { computed } from "vue";
+
+const $appInjectable = injectStrict(_appInjectable);
+
+const settings = computed(() => $appInjectable.settings);
 </script>

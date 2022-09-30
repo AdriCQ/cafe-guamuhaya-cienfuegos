@@ -63,8 +63,26 @@ class DatabaseSeeder extends Seeder
 
         Settings::query()->insert([
             'site_title' => 'Cafe Guamuhaya',
-            'site_about' => 'Cafe Guamuhaya',
+            'site_about' => json_encode([
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quod perferendis assumenda, facere, beatae ex nulla a id necessitatibus dolorem expedita minus reprehenderit inventore iure in ea, non debitis aspernatur.',
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quod perferendis assumenda, facere, beatae ex nulla a id necessitatibus dolorem expedita minus reprehenderit inventore iure in ea, non debitis aspernatur.'
+            ]),
+
             'address' => 'Cafe Guamuhaya',
+            'social' => json_encode([
+                [
+                    'key' => 'tel',
+                    'link' => 'tel:53375180',
+                    'label' => '53375180',
+                    'icon' => 'ion-'
+                ], [
+                    'key' => 'email',
+                    'link' => 'mailto:adriancapote95@gmail.com',
+                    'label' => 'adriancapote95@gmail.com',
+                    'icon' => 'ion-email'
+                ]
+            ])
+
         ]);
     }
 }

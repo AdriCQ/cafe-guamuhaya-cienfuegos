@@ -7,6 +7,11 @@
 import { BaseService } from "./baseService";
 import { $api } from "./_axios";
 
+export interface IOfferCategory {
+    id: number;
+    title: string;
+    description: string;
+}
 /**
  * Offer
  */
@@ -16,8 +21,11 @@ export interface IOffer {
     image?: string;
     title: string;
     description: string;
+    small_description: string;
     active: boolean;
     special: boolean;
+    category_id: number;
+    category?: IOfferCategory;
 }
 /**
  * Offer Request Store

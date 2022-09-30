@@ -17,7 +17,7 @@ class SettingsResource extends JsonResource
         return [
             'site_title' => $this->site_title,
             'site_about' => $this->site_about,
-            'address' => $this->site_about,
+            'address' => $this->address,
             'social' => $this->social,
         ];
     }

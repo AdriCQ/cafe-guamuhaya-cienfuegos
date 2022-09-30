@@ -12,5 +12,5 @@ class Settings extends Model
     protected $guarded = ['id'];
     public $timestamps = false;
 
-    protected $casts = ['social' => 'array'];
+    protected $casts = ['social' => 'array', 'site_about' => 'array'];
 }

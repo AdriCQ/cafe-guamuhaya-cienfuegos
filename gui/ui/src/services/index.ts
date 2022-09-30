@@ -10,4 +10,6 @@ export * from "./_axios";
  */
 
 export * from "./messages";
+export * from "./offers";
+export * from "./settings";
 export * from "./users";

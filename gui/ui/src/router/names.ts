@@ -5,4 +5,5 @@ export enum ROUTE_NAME {
     HOME = "HOME",
     MENU = "MENU",
     NEWS = "NEWS",
+    OFFER_DETAILS = 'DETAILS.OFFER'
 }

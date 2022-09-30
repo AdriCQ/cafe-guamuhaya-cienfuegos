@@ -7,6 +7,7 @@ import ContactPage from "src/pages/ContactPage.vue";
 import MenuPage from "src/pages/MenuPage.vue";
 import NewsPage from "src/pages/NewsPage.vue";
 import EventsPage from "src/pages/EventsPage.vue";
+import OfferDetails from 'src/pages/OfferDetails.vue';
 import MainLayout from "src/layouts/MainLayout.vue";
 import { scrollTop } from "src/helpers";
 /**
@@ -54,6 +55,14 @@ export const routes: RouteRecordRaw[] = [
                 component: ContactPage,
                 beforeEnter: () => scrollTop(),
             },
+
+            {
+                path: "offer/:id",
+                name: ROUTE_NAME.OFFER_DETAILS,
+                component: OfferDetails,
+                beforeEnter: () => scrollTop(),
+            },
+
         ],
     },
 ];
