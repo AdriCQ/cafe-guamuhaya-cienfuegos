@@ -64,6 +64,7 @@ class DatabaseSeeder extends Seeder
         Settings::query()->insert([
             'site_title' => 'Cafe Guamuhaya',
             'site_about' => 'Cafe Guamuhaya',
+            'address' => 'Cafe Guamuhaya',
         ]);
     }
 }

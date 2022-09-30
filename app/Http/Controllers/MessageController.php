@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\MessageResource;
 use App\Models\Message;
-use DefStudio\Telegraph\Models\TelegraphBot;
 use DefStudio\Telegraph\Models\TelegraphChat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

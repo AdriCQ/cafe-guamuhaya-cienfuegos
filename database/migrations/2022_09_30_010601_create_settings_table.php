@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('site_title');
             $table->longText('site_about');
+            $table->string('address');
+            $table->json('social')->nullable();
         });
     }
 

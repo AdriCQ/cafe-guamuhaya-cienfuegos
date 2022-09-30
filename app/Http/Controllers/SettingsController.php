@@ -39,7 +39,14 @@ class SettingsController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'site_title' => ['nullable', 'string'],
-            'site_about' => ['nullable', 'string']
+            'site_about' => ['nullable', 'string'],
+            'address' => ['nullable', 'string'],
+            'social' => ['nullable', 'array'],
+            'social.*.key' => ['required', 'string'],
+            'social.*.label' => ['required', 'string'],
+            'social.*.link' => ['required', 'string'],
+            'social.*.icon' => ['required', 'string'],
+
         ]);
         if ($validator->fails()) {
             return $this->sendResponse(null, 400);
