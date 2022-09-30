@@ -12,7 +12,9 @@ Authorization: {{token}}
     "price": 20.00,
     "active": true,
     "special": false,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab harum est nam explicabo minus tenetur voluptatibus repellat suscipit saepe! Sint, nisi voluptatum! Ipsa perspiciatis quod ea vitae autem, nemo cupiditate?"
+    "small_description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab harum est nam explicabo minus tenetur voluptatibus repellat suscipit saepe! Sint, nisi voluptatum! Ipsa perspiciatis quod ea vitae autem, nemo cupiditate?",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab harum est nam explicabo minus tenetur voluptatibus repellat suscipit saepe! Sint, nisi voluptatum! Ipsa perspiciatis quod ea vitae autem, nemo cupiditate?",
+    "offer_category_id": 1
 }
 
 ### Show
@@ -30,6 +32,7 @@ Authorization: {{token}}
     "price": 250.00,
     "active": true,
     "special": true,
+    "small_description": "Small Description Updated",
     "description": "Description Updated"
 }
 
