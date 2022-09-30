@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\OfferResource;
 use App\Models\Offer;
+use App\Models\OfferCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -119,5 +120,67 @@ class OfferController extends Controller
         return Offer::find($id) && Offer::find($id)->delete()
             ? $this->sendResponse()
             : $this->sendResponse(null, 502);
+    }
+
+    /**
+     * Category list
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function categoryList()
+    {
+        return $this->sendResponse(OfferCategory::all());
+    }
+
+    /**
+     * Create category
+     * @param Request request
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function categoryStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+        ]);
+        if ($validator->fails()) {
+            return $this->sendResponse(null, 400);
+        }
+        $validator = $validator->validate();
+        $model = new OfferCategory($validator);
+        return $model->save() ? $this->sendResponse($model) : $this->sendResponse(null, 500);
+    }
+
+    /**
+     * Category update
+     * @param Request request
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function categoryUpdate(Request $request, int $id)
+    {
+        $model = OfferCategory::find($id);
+        $validator = Validator::make($request->all(), [
+            'title' => ['nullable', 'string'],
+            'description' => ['nullable', 'string'],
+        ]);
+        if ($validator->fails() || !$model) {
+            return $this->sendResponse(null, 400);
+        }
+        $validator = $validator->validate();
+        return $model->update($validator)
+            ? $this->sendResponse(OfferCategory::find($id))
+            : $this->sendResponse(null, 500);
+    }
+
+    /**
+     *
+     * @param int $id
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function categoryDestroy(int $id)
+    {
+        $model = OfferCategory::find($id);
+        return $model && $model->delete()
+            ? $this->sendResponse()
+            : $this->sendResponse(null, 500);
     }
 }

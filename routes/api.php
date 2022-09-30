@@ -19,6 +19,13 @@ Route::apiResources([
     'messages' => MessageController::class
 ]);
 
+Route::prefix('offer-categories')->middleware('auth:sanctum')->group(function () {
+    Route::get('', [OfferController::class, 'categoryList']);
+    Route::post('', [OfferController::class, 'categoryStore']);
+    Route::patch('{id}', [OfferController::class, 'categoryUpdate']);
+    Route::delete('{id}', [OfferController::class, 'categoryDestroy']);
+});
+
 
 Route::get('messages/all', [MessageController::class, 'list'])->middleware('auth:sanctum');
 

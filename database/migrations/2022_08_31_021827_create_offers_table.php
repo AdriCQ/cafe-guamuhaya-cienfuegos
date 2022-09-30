@@ -30,7 +30,7 @@ return new class extends Migration
             $table->boolean('special')->default(false);
             $table->timestamps();
 
-            $table->foreignIdFor(OfferCategory::class);
+            $table->foreignIdFor(OfferCategory::class)->onDelete('cascade');
         });
     }
 
