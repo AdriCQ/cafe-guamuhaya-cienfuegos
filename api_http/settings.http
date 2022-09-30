@@ -1,0 +1,13 @@
+### Index
+GET /api/settings HTTP/1.1
+Host: {{ host }}
+
+### Update
+PATCH /api/settings HTTP/1.1
+Host: {{ host }}
+Authorization: {{ token }}
+
+{
+    "site_title": "Offer Title Updated",
+    "site_about": "Site about update"
+}

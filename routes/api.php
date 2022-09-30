@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,8 @@ Route::apiResources([
 
 
 Route::get('messages/all', [MessageController::class, 'list'])->middleware('auth:sanctum');
+
+Route::prefix('settings')->group(function () {
+    Route::get('', [SettingsController::class, 'index']);
+    Route::patch('', [SettingsController::class, 'update']);
+});

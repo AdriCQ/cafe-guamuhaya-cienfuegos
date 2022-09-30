@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Settings;
 use App\Models\User;
 use DefStudio\Telegraph\Models\TelegraphBot;
 use Illuminate\Database\Seeder;
@@ -45,19 +46,24 @@ class DatabaseSeeder extends Seeder
          * -----------------------------------------
          */
 
-        $bot = TelegraphBot::create([
-            'token' => env('TELEGRAM_BOT_TOKEN', '5771381846:AAGP6UgaqoaxPBE8p6S1lq8pYhYIgijjAkA'),
-            'name' => 'JaguaBIT',
+        // $bot = TelegraphBot::create([
+        //     'token' => env('TELEGRAM_BOT_TOKEN', '5771381846:AAGP6UgaqoaxPBE8p6S1lq8pYhYIgijjAkA'),
+        //     'name' => 'JaguaBIT',
+        // ]);
+        // $bot->chats()->create([
+        //     'chat_id' => env('TELEGRAM_ADMIN_CHAT_ID'),
+        //     'name' => 'Admin Chat',
+        // ]);
+        // if (env('APP_ENV') === 'production') {
+        //     // Unregister bot
+        //     $bot->unregisterWebhook(true)->send();
+        //     // register webhook
+        //     $bot->registerWebhook()->send();
+        // }
+
+        Settings::query()->insert([
+            'site_title' => 'Cafe Guamuhaya',
+            'site_about' => 'Cafe Guamuhaya',
         ]);
-        $bot->chats()->create([
-            'chat_id' => env('TELEGRAM_ADMIN_CHAT'),
-            'name' => 'Developer AdriCQ',
-        ]);
-        if (env('APP_ENV') === 'production') {
-            // Unregister bot
-            $bot->unregisterWebhook(true)->send();
-            // register webhook
-            $bot->registerWebhook()->send();
-        }
     }
 }
