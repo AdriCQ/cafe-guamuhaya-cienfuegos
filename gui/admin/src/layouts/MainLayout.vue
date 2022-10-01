@@ -17,8 +17,8 @@
       </q-toolbar>
     </q-header>
 
-    <LeftDrawer v-model:leftDrawer="leftDrawerOpen" />
-    <q-page-container>
+    <MainDrawer v-model="leftDrawerOpen" />
+    <q-page-container class="text-grey-9">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import LeftDrawer from 'components/layout/MainDrawer.vue';
+import MainDrawer from 'components/layout/MainDrawer.vue';
 
 const leftDrawerOpen = ref(false);
 

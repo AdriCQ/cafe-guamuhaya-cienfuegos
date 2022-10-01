@@ -14,12 +14,13 @@
       <q-form @submit.prevent="onSubmit">
         <q-card-section class="q-py-sm q-gutter-y-md">
           <q-input
-            v-model="email"
+            v-model="form.email"
             type="email"
             label="Correo electrónico *"
             color="dark"
             outlined
             class="q-mb-xs"
+            required
           >
             <template v-slot:prepend>
               <q-icon name="mdi-account" color="dark" size="20px" />
@@ -27,11 +28,12 @@
           </q-input>
 
           <q-input
-            v-model="password"
+            v-model="form.password"
             type="password"
             label="Contraseña *"
             color="dark"
             outlined
+            required
           >
             <template v-slot:prepend>
               <q-icon name="mdi-key" color="dark" size="20px" />
@@ -66,14 +68,46 @@
 </template>
 
 <script setup lang="ts">
+import { _user, injectStrict } from 'src/injectables';
+import { useNotification } from 'src/composables';
+import { ROUTE_NAME } from 'src/router';
+import { IUserRequestLogin } from 'src/services';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+/**
+ * -----------------------------------------
+ *	Init
+ * -----------------------------------------
+ */
+const $notify = useNotification();
+const $user = injectStrict(_user);
+const $router = useRouter();
+/**
+ * -----------------------------------------
+ *	Data
+ * -----------------------------------------
+ */
 
-const email = ref(null);
-const password = ref(null);
-
-const onSubmit = () => {
-  console.log('Submit form');
-};
+const form = ref<IUserRequestLogin>({
+  email: '',
+  password: '',
+});
+/**
+ * -----------------------------------------
+ *	Methdods
+ * -----------------------------------------
+ */
+/**
+ * Submit
+ */
+async function onSubmit() {
+  try {
+    await $user.login(form.value);
+    void $router.push({ name: ROUTE_NAME.HOME });
+  } catch (error) {
+    $notify.axios(error);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

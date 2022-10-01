@@ -1,18 +1,32 @@
 import { RouteRecordRaw } from 'vue-router';
+import MainLayout from 'src/layouts/MainLayout.vue';
+import AuthLayout from 'src/layouts/AuthLayout.vue';
 import { ROUTE_NAME } from './names';
+import { authGuard } from './guards';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    component: MainLayout,
+    beforeEnter: authGuard,
+    children: [
+      {
+        path: '',
+        name: ROUTE_NAME.HOME,
+        component: () => import('pages/IndexPage.vue'),
+      },
+    ],
   },
-
   {
-    path: '/login',
-    name: ROUTE_NAME.LOGIN,
-    component: () => import('layouts/AuthLayout.vue'),
-    children: [{ path: '', component: () => import('pages/LoginPage.vue') }],
+    path: '/auth',
+    component: AuthLayout,
+    children: [
+      {
+        path: '',
+        name: ROUTE_NAME.AUTH,
+        component: () => import('pages/LoginPage.vue'),
+      },
+    ],
   },
 
   // Always leave this as last one,

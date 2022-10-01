@@ -1,5 +1,5 @@
 <template>
-  <q-drawer v-model="leftDrawerComp" show-if-above>
+  <q-drawer :model-value="modelValue" @update:model-value="p=>$emit('update:modelValue', p)" show-if-above>
     <div class="container">
       <q-list separator>
         <q-item>
@@ -22,46 +22,22 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { toRefs } from 'vue';
 import { ROUTE_NAME } from 'src/router';
-import LinkItem, { LinkItemProps } from 'components/LinkItem.vue';
+import LinkItem, { LinkItemProps } from './LinkItem.vue';
 
-const props = defineProps<{
-  leftDrawer: boolean;
+const $props = defineProps<{
+  modelValue: boolean;
 }>();
 
-const emits = defineEmits<{
-  (e: 'update:leftDrawer', newValue: boolean): void;
+const $emit = defineEmits<{
+  (e: 'update:modelValue', newValue: boolean): void;
 }>();
 
-const leftDrawerComp = computed({
-  get() {
-    return props.leftDrawer;
-  },
-  set(newValue: boolean) {
-    emits('update:leftDrawer', newValue);
-  },
-});
+const {modelValue} = toRefs($props);
 
 const navLinks: Array<LinkItemProps> = [
-  { title: 'Perfil', icon: 'mdi-account-outline', to: ROUTE_NAME.PROFILE },
-  {
-    title: 'Aplicación',
-    icon: 'mdi-cellphone-link',
-    to: ROUTE_NAME.APP_CONFIG,
-  },
-  { title: 'Ofertas', icon: 'mdi-gift-outline', to: ROUTE_NAME.OFFERS },
-  {
-    title: 'Eventos',
-    icon: 'mdi-calendar-month-outline',
-    to: ROUTE_NAME.EVENTS,
-  },
-  { title: 'Noticias', icon: 'mdi-card-text-outline', to: ROUTE_NAME.NEWS },
-  {
-    title: 'Comentarios',
-    icon: 'mdi-comment-text-outline',
-    to: ROUTE_NAME.COMMENTS,
-  },
+  { title: 'Perfil', icon: 'mdi-account-outline', to: ROUTE_NAME.HOME },
 ];
 </script>
 
